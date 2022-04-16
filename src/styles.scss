@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '~material-icons/iconfont/material-icons.css';
+
+body {
+  &.dark-mode {
+    background-color: rgb(56, 53, 53);
+    color: white;
+  }
+}
+img {
+  width: 100%;
+}
+
+.btn-link {
+  color: inherit;
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+
+
+
+

@@ -1,0 +1,23 @@
+<div class="movies__header">
+  <h1>Movies list</h1>
+  <div>
+    <button type="button" class="btn btn-link" [class.active]="isListView"
+            (click)="changeView(true)">
+      <span class="material-icons">view_list</span>
+    </button>
+    <button type="button" class="btn btn-link" [class.active]="!isListView" (click)="changeView(false)">
+      <span class="material-icons">view_module</span></button>
+  </div>
+</div>
+<div class="movies__wrap" [class.movies--view-list]="isListView" [class.movies--view-card]="!isListView">
+  <div *ngFor="let item of movies" class="movies__item">
+    <img [src]="item.posterUrl" [alt]="item.title">
+    <div class="movies__info">
+      <h4>{{item.title}}</h4>
+      <p>Year: {{item.year}}</p>
+      <p>Cash fees: {{item["cash fees"]}}</p>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,41 @@
+.movies {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &--view-list {
+
+    .movies__item {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+
+      img {
+        width: 150px;
+      }
+
+    }
+    .movies__info {
+      padding-left: 15px;
+    }
+
+
+  }
+
+  &--view-card {
+    display: grid;
+    grid-template: auto / repeat(auto-fit,minmax(150px, 1fr));
+    grid-gap: 15px;
+    padding-top: 15px;
+  }
+
+  &__info {
+    padding-top: 10px;
+  }
+}
+
+.active {
+  color: #0d6efd;
+}
+
