@@ -8,11 +8,11 @@
 
     .movies__item {
       display: flex;
-      flex-wrap: wrap;
       padding: 20px;
 
       img {
-        width: 150px;
+        max-width: 110px;
+        min-width: 80px
       }
 
     }

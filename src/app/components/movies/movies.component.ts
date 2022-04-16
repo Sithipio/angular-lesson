@@ -11,6 +11,7 @@ export class MoviesComponent implements OnInit {
   // @ts-ignore
   public isListView: booleanff = !JSON.parse(localStorage.getItem("isCardView"));
   private moviesService: MoviesService;
+  public template: string = "";
 
   constructor() {
     this.moviesService = new MoviesService();
@@ -28,4 +29,5 @@ export class MoviesComponent implements OnInit {
     this.isListView = flag;
     localStorage.setItem("isCardView", JSON.stringify(!flag));
   }
+
 }

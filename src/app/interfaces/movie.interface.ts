@@ -6,7 +6,7 @@ export interface IMovie {
   genres: string[]
   director: string,
   actors: string,
-  "cash fees" : number,
+  cashFees : number,
   plot: string,
   posterUrl: string
 
