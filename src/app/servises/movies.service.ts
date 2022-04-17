@@ -415,8 +415,4 @@ export class MoviesService {
       return item.id !== id
     })
   }
-
-  addMovie(movie: any): void {
-     this.movies.push({...movie, id: this.movies.length + 1})
-  }
 }

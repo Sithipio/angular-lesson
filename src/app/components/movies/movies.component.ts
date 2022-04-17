@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MoviesService} from "../../servises/movies.service";
 import {IMovie} from "../../interfaces/movie.interface";
 
@@ -7,17 +7,21 @@ import {IMovie} from "../../interfaces/movie.interface";
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss']
 })
-export class MoviesComponent {
+export class MoviesComponent implements OnInit {
+  public movies: IMovie[] = [];
   // @ts-ignore
-  public isListView: boolean = !JSON.parse(localStorage.getItem("isCardView"));
+  public isListView: booleanff = !JSON.parse(localStorage.getItem("isCardView"));
   private moviesService: MoviesService;
   public template: string = "";
   @Input() public search: string = "";
   @Input() public sort: string = "";
-  @Input() public movies: IMovie[] = [];
 
   constructor() {
     this.moviesService = new MoviesService();
+  }
+
+  ngOnInit(): void {
+    this.getMovies();
   }
 
   getMovies(): void {
