@@ -5,9 +5,9 @@ export interface IMovie {
   runtime: string,
   genres: string[]
   director: string,
-  actors: string,
+  actors: string[],
   cashFees : number,
+  createdData: string,
   plot: string,
   posterUrl: string
-
 }

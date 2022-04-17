@@ -1,4 +1,27 @@
 .movies {
+  &__item {
+    position: relative;
+
+    .material-icons-outlined {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: none;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 20px #888888;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    &:hover {
+      .material-icons-outlined {
+        display: block;
+      }
+
+    }
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -11,11 +34,13 @@
       padding: 20px;
 
       img {
+        object-fit: contain;
         max-width: 110px;
-        min-width: 80px
+        min-width: 80px;
       }
 
     }
+
     .movies__info {
       padding-left: 15px;
     }
@@ -38,4 +63,15 @@
 .active {
   color: #0d6efd;
 }
+
+@media (max-width: 768px) {
+  .movies {
+    &__item {
+      .material-icons-outlined {
+        display: block;
+      }
+    }
+  }
+}
+
 

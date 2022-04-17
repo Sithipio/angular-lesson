@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MoviesService} from "../../servises/movies.service";
+import {IMovie} from "../../interfaces/movie.interface";
 
 @Component({
   selector: 'app-movies',
@@ -7,11 +8,13 @@ import {MoviesService} from "../../servises/movies.service";
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-  public movies: any[] = [];
+  public movies: IMovie[] = [];
   // @ts-ignore
   public isListView: booleanff = !JSON.parse(localStorage.getItem("isCardView"));
   private moviesService: MoviesService;
   public template: string = "";
+  @Input() public search: string = "";
+  @Input() public sort: string = "";
 
   constructor() {
     this.moviesService = new MoviesService();
@@ -30,4 +33,8 @@ export class MoviesComponent implements OnInit {
     localStorage.setItem("isCardView", JSON.stringify(!flag));
   }
 
+  onDelete(id: number): void {
+    this.moviesService.deleteMovie(id);
+    this.getMovies();
+  }
 }

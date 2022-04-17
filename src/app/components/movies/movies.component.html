@@ -10,12 +10,17 @@
   </div>
 </div>
 <div class="movies__wrap" [class.movies--view-list]="isListView" [class.movies--view-card]="!isListView">
-  <div *ngFor="let item of movies" class="movies__item">
+  <div *ngFor="let item of movies | search: search | sort: sort" class="movies__item">
+    <span class="material-icons-outlined" title="Delete movie" (click)="onDelete(item.id)">
+remove_circle
+</span>
     <img [src]="item.posterUrl" [alt]="item.title">
     <div class="movies__info">
       <h4>{{item.title}}</h4>
       <p>Year: {{item.year}}</p>
+      <p>Actors: {{item.actors.join(', ')}}</p>
       <p>Cash fees: {{item.cashFees | movies}}</p>
+      <p>Created data: {{item.createdData | date}}</p>
     </div>
   </div>
 </div>

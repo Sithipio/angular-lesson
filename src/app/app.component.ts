@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NewMovieComponent} from "./components/new-movie/new-movie.component";
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,12 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
   // @ts-ignore
-  isDarkMode: any = JSON.parse(localStorage.getItem("isDarkMode"));
-  isNavbarCollapsed: boolean = true;
+  public isDarkMode: any = JSON.parse(localStorage.getItem("isDarkMode"));
+  public isNavbarCollapsed: boolean = true;
+  public search: string = "";
+  public sort: string = "";
+
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {
     if (this.isDarkMode) {
@@ -21,4 +27,18 @@ export class AppComponent implements OnInit {
     localStorage.setItem("isDarkMode", JSON.stringify(this.isDarkMode));
     document.body.classList.toggle("dark-mode");
   }
+
+  onSearch(event: any): void {
+    this.search = event.target.value;
+  }
+
+  onSort(event: any): void {
+    this.sort = event.target.value;
+  }
+
+  onOpen() {
+    const modalRef = this.modalService.open(NewMovieComponent);
+    modalRef.componentInstance.isDarkMode = this.isDarkMode;
+  }
+
 }
