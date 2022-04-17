@@ -5,7 +5,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {MoviesComponent} from './components/movies/movies.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MoviesPipe} from './pipes/movies.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { SortPipe } from './pipes/sort.pipe';
@@ -22,11 +22,12 @@ registerLocaleData(localeUk);
     SortPipe,
     NewMovieComponent
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        NgbModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
   providers: [
     {provide: LOCALE_ID, useValue: 'uk-UK'}
   ],
