@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NewMovieComponent} from "./components/new-movie/new-movie.component";
+import {IMovie} from "./interfaces/movie.interface";
+import {MoviesService} from "./servises/movies.service";
 
 @Component({
   selector: 'app-root',
@@ -13,13 +15,27 @@ export class AppComponent implements OnInit {
   public isNavbarCollapsed: boolean = true;
   public search: string = "";
   public sort: string = "";
+  public movies: IMovie[] = [];
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal,
+              private moviesService: MoviesService) {
+
+  }
 
   ngOnInit(): void {
+    this.getMovies();
     if (this.isDarkMode) {
       document.body.classList.toggle("dark-mode");
     }
+  }
+
+  getMovies(): void {
+    this.movies = this.moviesService.getMovies();
+  }
+
+  addMovie(movie: any): void {
+    this.moviesService.addMovie(movie);
+    this.getMovies();
   }
 
   changeMode(): void {
@@ -39,6 +55,11 @@ export class AppComponent implements OnInit {
   onOpen() {
     const modalRef = this.modalService.open(NewMovieComponent);
     modalRef.componentInstance.isDarkMode = this.isDarkMode;
+
+    modalRef.componentInstance.passEntry.subscribe((movie: any) => {
+      console.log(movie);
+      this.addMovie(movie);
+    })
   }
 
 }

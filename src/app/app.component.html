@@ -34,20 +34,20 @@ search
                (change)="onSearch($event)">
       </form>
 
-    <div class="separator">|</div>
-    <div class="sort">
+      <div class="separator">|</div>
+      <div class="sort">
       <span class="material-icons-outlined icon">
 sort
 </span>
-      <select class="form-select" aria-label="Default select example" (change)="onSort($event)">
-        <option value="" selected>None</option>
-        <option value="title">Name A-Z</option>
-        <option value="year">Year</option>
-        <option value="createdData">Created date</option>
-      </select>
-    </div>
+        <select class="form-select" aria-label="Default select example" (change)="onSort($event)">
+          <option value="" selected>None</option>
+          <option value="title">Name A-Z</option>
+          <option value="year">Year</option>
+          <option value="createdData">Created date</option>
+        </select>
+      </div>
     </div>
   </nav>
-  <app-movies [search]="search" [sort]="sort"></app-movies>
+  <app-movies [search]="search" [sort]="sort" [movies]="movies"></app-movies>
 </div>
 

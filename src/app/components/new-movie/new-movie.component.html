@@ -4,11 +4,72 @@
     <h4 class="modal-title">Hi there!</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
   </div>
-  <div class="modal-body">
+  <form class="modal-body" [formGroup]="form">
+    <div class="alert alert-danger" *ngIf="isError">
+      errror
+    </div>
+    <div class="mb-3 row">
+      <label for="posterUrl" class="col-sm-3 col-form-label">posterUrl</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="posterUrl" formControlName="posterUrl">
+        <div class="danger"
+             *ngIf="form.controls['posterUrl'].invalid && form.controls['posterUrl'].touched">
+          Некорректный email
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="title" class="col-sm-3 col-form-label">Name</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="title" formControlName="title">
+        <div class="danger"
+             *ngIf="form.controls['title'].invalid && form.controls['title'].touched">
+          Некорректный email
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="year" class="col-sm-3 col-form-label">Year</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="year" formControlName="year">
+        <div class="danger"
+             *ngIf="form.touched && form.controls['year'].invalid && form.controls['year'].touched">
+          Некорректный email
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="cashFees" class="col-sm-3 col-form-label">Cash fees</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="cashFees" formControlName="cashFees">
+        <div class="danger"
+             *ngIf="form.controls['cashFees'].invalid && form.controls['cashFees'].touched">
+          Некорректный email
+        </div>
+      </div>
 
-  </div>
+    </div>
+    <div formArrayName="actors">
+      <div class="mb-3 row" *ngFor="let control of actorsFormArray.controls; let i = index">
+        <label for="actor-{{i}}" class="col-sm-3 col-form-label">Actore</label>
+        <div class="col-sm-9">
+          <div class="d-flex">
+            <input type="text" class="form-control" id="actor-{{i}}" [formControlName]="i">
+            <button class="btn  btn-outline-success" (click)="addControl()">+</button>
+            <button *ngIf="actorsFormArray.controls.length>1" class="btn  btn-outline-danger"
+                    (click)="removeControl(i)">-
+            </button>
+          </div>
+          <div class="danger"
+               *ngIf="actorsFormArray.controls[i].invalid && actorsFormArray.controls[i].touched">
+            Некорректный email
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary" (click)="activeModal.close('Close click')">Add</button>
+    <button type="button" class="btn btn-outline-primary" (click)="addMovies()">Add</button>
     <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close('Close click')">Close</button>
   </div>
 </div>
