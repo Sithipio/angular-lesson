@@ -8,9 +8,16 @@
   align-items: center;
   justify-content: space-between;
   max-width: 180px;
+  padding-left: 10px;
 
 }
 
 .icon {
   padding-right: 10px;
+}
+@media (max-width: 992px) {
+  .separator {
+    display: none;
+  }
+
 }

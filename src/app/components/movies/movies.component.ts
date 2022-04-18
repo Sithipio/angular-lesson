@@ -9,7 +9,7 @@ import {IMovie} from "../../interfaces/movie.interface";
 })
 export class MoviesComponent {
   // @ts-ignore
-  public isListView: booleanff = !JSON.parse(localStorage.getItem("isCardView"));
+  public isListView: boolean = !JSON.parse(localStorage.getItem("isCardView"));
   private moviesService: MoviesService;
   public template: string = "";
   @Input() public search: string = "";
