@@ -18,7 +18,7 @@ export class NewMovieComponent {
 
     this.form = formBuilder.group({
       title: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(60)]],
-      year: ["", [Validators.required, Validators.min(1895), Validators.max(new Date().getFullYear())]],
+      year: ["", [Validators.required, Validators.pattern(/^[0-9]+/), Validators.min(1895), Validators.max(new Date().getFullYear())]],
       cashFees: ["", [Validators.required, Validators.pattern(/^(?!(^0+(\.0+)?$))^\d{5,10}(\.\d{1,2})?$/)]],
       posterUrl: ["", [Validators.required, Validators.pattern(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/)]],
       createdData: [new Date(), [Validators.required]],
