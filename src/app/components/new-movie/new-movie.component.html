@@ -54,6 +54,9 @@
             <div *ngIf="form.controls['year'].errors?.['max']">
               The site contains only released films
             </div>
+            <div *ngIf="form.controls['year'].errors?.['pattern']">
+              The field must contain only numbers
+            </div>
           </div>
         </div>
       </div>
