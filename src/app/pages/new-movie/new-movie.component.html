@@ -1,11 +1,9 @@
-<div [class.bg-light]="!isDarkMode"
-     [class.bg-dark]="isDarkMode">
-  <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+<div>
+  <div class="header">
+    <h4 class="title">Add new movies form</h4>
   </div>
   <div class="container">
-    <form class="modal-body" [formGroup]="form">
+    <form class="body" [formGroup]="form">
       <div class="mb-3 row">
         <label for="posterUrl" class="col-sm-3 col-form-label">posterUrl</label>
         <div class="col-sm-9">
@@ -98,8 +96,7 @@
       </div>
     </form>
   </div>
-  <div class="modal-footer">
+  <div class="footer">
     <button type="button" class="btn btn-outline-primary" (click)="addMovies()">Add</button>
-    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close('Close click')">Close</button>
   </div>
 </div>

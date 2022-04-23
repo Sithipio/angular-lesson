@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {Component} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {MoviesService} from "../../servises/movies.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-movie',
@@ -8,20 +9,20 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
   styleUrls: ['./new-movie.component.scss']
 })
 export class NewMovieComponent {
-  @Input() isDarkMode: boolean = true;
-  @Output() passEntry: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
   isError: boolean = false;
 
-  constructor(public activeModal: NgbActiveModal,
-              private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private moviesService: MoviesService) {
 
     this.form = formBuilder.group({
       title: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(60)]],
       year: ["", [Validators.required, Validators.pattern(/^[0-9]+/), Validators.min(1895), Validators.max(new Date().getFullYear())]],
       cashFees: ["", [Validators.required, Validators.pattern(/^(?!(^0+(\.0+)?$))^\d{5,10}(\.\d{1,2})?$/)]],
       posterUrl: ["", [Validators.required, Validators.pattern(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/)]],
-      createdData: [new Date(), [Validators.required]],
+      createdData: [new Date().toDateString(), [Validators.required]],
+      isFavorite: [false],
       actors: formBuilder.array([["", Validators.required]])
     });
   }
@@ -40,16 +41,12 @@ export class NewMovieComponent {
 
   addMovies() {
     if (this.form.valid) {
-      this.passEntry.emit(this.form.value);
-      this.activeModal.close();
+      this.moviesService.addMovie(this.form.value).then(() => {
+        console.log('Created new item successfully!');
+        this.router.navigate(['/']);
+      });
     } else {
       this.isError = true;
-      let hiddenElement: any;
-      hiddenElement = document.getElementById("box");
-      function handleButtonClick() {
-        hiddenElement.scrollIntoView();
-      }
-      hiddenElement.addEventListener('click', handleButtonClick);
     }
   }
 }

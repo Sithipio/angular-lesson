@@ -1,0 +1,51 @@
+<div class="movies__header">
+  <h1>{{title}}</h1>
+  <div class="d-flex align-items-center">
+    <span class="material-icons-outlined icon">search</span>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+             name="search" [(ngModel)]="search">
+    </form>
+  </div>
+
+  <div class="separator">|</div>
+
+  <div class="sort">
+    <span class="material-icons-outlined icon">sort</span>
+    <select class="form-select" aria-label="Default select example" name="sort" [(ngModel)]="sort" >
+      <option value="" selected>None</option>
+      <option value="title">Name A-Z</option>
+      <option value="year">Year</option>
+      <option value="createdData">Created date</option>
+    </select>
+  </div>
+
+</div>
+  <div>
+    <button type="button" class="btn btn-link" [class.active]="isListView"
+            (click)="changeView(true)">
+      <span class="material-icons">view_list</span>
+    </button>
+    <button type="button" class="btn btn-link" [class.active]="!isListView" (click)="changeView(false)">
+      <span class="material-icons">view_module</span></button>
+  </div>
+
+<div class="movies__wrap" [class.movies--view-list]="isListView" [class.movies--view-card]="!isListView">
+  <div *ngFor="let item of movies | search: search | sort: sort" class="movies__item">
+    <span class="material-icons-outlined delete" title="Delete movie" (click)="onDelete(item.id)">
+remove_circle
+</span>
+    <span class="material-icons-outlined" (click)="toggleFavorite(item)">
+remove_circle
+</span>
+    <img [src]="item.posterUrl" [alt]="item.title">
+    <div class="movies__info">
+      <h4>{{item.title}}</h4>
+      <p>Year: {{item.year}}</p>
+      <p>Actors: {{item.actors?.join(', ')}}</p>
+      <p>Cash fees: {{item.cashFees | movies}}</p>
+      <p>Created data: {{item.createdData | date}}</p>
+    </div>
+  </div>
+</div>
+

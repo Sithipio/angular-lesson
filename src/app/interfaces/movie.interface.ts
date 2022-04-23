@@ -1,13 +1,10 @@
 export interface IMovie {
-  id: number,
+  id: string,
   title: string,
   year: string,
-  runtime: string,
-  genres: string[]
-  director: string,
   actors: string[],
   cashFees : number,
   createdData: string,
-  plot: string,
+  isFavorite: boolean,
   posterUrl: string
 }
