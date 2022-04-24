@@ -1,24 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MoviesService} from "../../servises/movies.service";
+import {IMovie} from "../../interfaces/movie.interface";
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss']
 })
-export class MoviesComponent implements OnInit {
-  public movies: any[] = [];
+export class MoviesComponent {
   // @ts-ignore
-  public isListView: booleanff = !JSON.parse(localStorage.getItem("isCardView"));
+  public isListView: boolean = !JSON.parse(localStorage.getItem("isCardView"));
   private moviesService: MoviesService;
   public template: string = "";
+  @Input() public search: string = "";
+  @Input() public sort: string = "";
+  @Input() public movies: IMovie[] = [];
 
   constructor() {
     this.moviesService = new MoviesService();
-  }
-
-  ngOnInit(): void {
-    this.getMovies();
   }
 
   getMovies(): void {
@@ -30,4 +29,8 @@ export class MoviesComponent implements OnInit {
     localStorage.setItem("isCardView", JSON.stringify(!flag));
   }
 
+  onDelete(id: number): void {
+    this.moviesService.deleteMovie(id);
+    this.getMovies();
+  }
 }
