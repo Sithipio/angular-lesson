@@ -12,10 +12,14 @@
          class="collapse navbar-collapse"
          id="navbarsDefault">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" (click)="onOpen()" href="#">Add new movies</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" routerLink="/" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact:true}">Movies list</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" routerLink="/favorites" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact:true}"> Favorite movies</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/add-new-movie" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact:true}">Add new movies</a></li>
       </ul>
-      <div class="d-flex align-items-center">
+      <div class="d-flex">
         <span class="material-icons-outlined icon">settings_brightness</span>
         <div class="form-check form-switch" title="Switch mode">
           <input class="form-check-input" type="checkbox" [checked]="isDarkMode"
@@ -23,29 +27,9 @@
           <label class="form-check-label" for="flexSwitchCheckDefault"></label>
         </div>
       </div>
-      <div class="separator">|</div>
-
-      <div class="d-flex align-items-center">
-        <span class="material-icons-outlined icon">search</span>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                 (change)="onSearch($event)">
-        </form>
-      </div>
-
-      <div class="separator">|</div>
-      <div class="sort">
-        <span class="material-icons-outlined icon">sort</span>
-        <select class="form-select" aria-label="Default select example" (change)="onSort($event)">
-          <option value="" selected>None</option>
-          <option value="title">Name A-Z</option>
-          <option value="year">Year</option>
-          <option value="createdData">Created date</option>
-        </select>
-      </div>
-
     </div>
   </nav>
-  <app-movies [search]="search" [sort]="sort" [movies]="movies"></app-movies>
+  <router-outlet></router-outlet>
 </div>
+
 
