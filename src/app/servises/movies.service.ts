@@ -268,7 +268,7 @@ export class MoviesService {
     return this.moviesRef.add({...movie});
   }
 
-  toggleFavorite( movie:any): Promise<any> {
+  toggleFavorite(movie: any): Promise<any> {
     return this.moviesRef.doc(movie.id).update(movie);
   }
 }

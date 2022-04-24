@@ -2,8 +2,8 @@
   <div class="header">
     <h4 class="title">Add new movies form</h4>
   </div>
-  <div class="container">
-    <form class="body" [formGroup]="form">
+  <div class="container new-movie">
+    <form class="body new-movie__form" [formGroup]="form">
       <div class="mb-3 row">
         <label for="posterUrl" class="col-sm-3 col-form-label">posterUrl</label>
         <div class="col-sm-9">
@@ -80,8 +80,7 @@
             <div class="d-flex">
               <input type="text" class="form-control" id="actor-{{i}}" [formControlName]="i">
               <button class="btn  btn-outline-success" (click)="addControl()">+</button>
-              <button *ngIf="actorsFormArray.controls.length>1" class="btn  btn-outline-danger"
-                      (click)="removeControl(i)">-
+              <button *ngIf="actorsFormArray.controls.length>1" class="btn  btn-outline-danger" (click)="removeControl(i)">-
               </button>
             </div>
             <div class="danger"
@@ -94,9 +93,10 @@
           Please fill in all fields
         </div>
       </div>
+      <div class="footer d-flex justify-content-end">
+        <button type="button" class="btn btn-outline-primary new-movie__btn" (click)="addMovies()">Add</button>
+        <button type="button" class="btn btn-outline-secondary new-movie__btn" routerLink="/">Cancel</button>
+      </div>
     </form>
-  </div>
-  <div class="footer">
-    <button type="button" class="btn btn-outline-primary" (click)="addMovies()">Add</button>
   </div>
 </div>
